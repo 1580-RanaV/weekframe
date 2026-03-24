@@ -18,6 +18,11 @@ export const metadata: Metadata = {
   title: "Weekframe",
   description:
     "Weekframe is a weekly execution planner for software teams that turns assigned work into realistic Monday to Friday commitments.",
+  icons: {
+    icon: "/weekframe-icon.svg",
+    shortcut: "/weekframe-icon.svg",
+    apple: "/weekframe-icon.svg",
+  },
 };
 
 export default function RootLayout({

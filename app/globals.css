@@ -111,6 +111,7 @@ body {
 html {
   background: var(--bg);
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 [data-theme="dark"] {
@@ -396,89 +397,74 @@ select {
     0 1px 2px rgba(9, 30, 66, 0.06);
 }
 
-@keyframes landing-orb-float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  50% {
-    transform: translate3d(0, -18px, 0);
-  }
+.landing-page {
+  --landing-surface: #ffffff;
+  --landing-ink: #05070b;
+  --landing-muted: rgba(5, 7, 11, 0.68);
+  --landing-line: rgba(5, 7, 11, 0.12);
+  --landing-header: rgba(255, 255, 255, 0.78);
+  --landing-button-border: #000000;
+  position: relative;
+  background: #ffffff;
+  color: var(--landing-ink);
+  font-family: Inter, var(--font-atlassian-sans), -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  letter-spacing: 0;
 }
 
-.landing-mesh {
-  background:
-    radial-gradient(
-      circle at 12% 14%,
-      rgba(12, 102, 228, 0.16),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 84% 24%,
-      rgba(12, 102, 228, 0.12),
-      transparent 26%
-    ),
-    linear-gradient(180deg, var(--bg) 0%, var(--shell) 100%);
+.landing-spotlight {
+  display: none;
 }
 
-.landing-orb {
-  position: absolute;
-  border-radius: 999px;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(12, 102, 228, 0.22), transparent 62%),
-    radial-gradient(circle at 70% 70%, rgba(12, 102, 228, 0.1), transparent 68%);
-  filter: blur(10px);
-  opacity: 0.9;
-  animation: landing-orb-float 10s ease-in-out infinite;
+.landing-spotlight-left {
+  left: -10%;
 }
 
-.landing-orb-delay {
-  animation-delay: -4s;
+.landing-spotlight-right {
+  right: -10%;
 }
 
-.landing-card-fade::after {
+.landing-frame {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid var(--border);
+  background: var(--shell);
+  box-shadow: none;
+}
+
+.landing-frame::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
   border-radius: inherit;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.42), transparent 32%),
-    linear-gradient(135deg, rgba(12, 102, 228, 0.06), transparent 48%);
-  opacity: 0.9;
+  background: none;
 }
 
-.landing-card-fade {
-  position: relative;
-  isolation: isolate;
+.landing-frame-blue::after {
+  background: none;
 }
 
-[data-theme="dark"] .landing-mesh {
-  background:
-    radial-gradient(
-      circle at 12% 14%,
-      rgba(87, 157, 255, 0.14),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 84% 24%,
-      rgba(87, 157, 255, 0.11),
-      transparent 26%
-    ),
-    linear-gradient(180deg, var(--bg) 0%, var(--shell) 100%);
+.landing-page-dark {
+  --landing-surface: #000000;
+  --landing-ink: #ffffff;
+  --landing-muted: rgba(255, 255, 255, 0.68);
+  --landing-line: rgba(255, 255, 255, 0.12);
+  --landing-header: rgba(0, 0, 0, 0.78);
+  --landing-button-border: rgba(255, 255, 255, 0.14);
+  background: #000000;
 }
 
-[data-theme="dark"] .landing-orb {
-  background:
-    radial-gradient(circle at 30% 30%, rgba(87, 157, 255, 0.18), transparent 62%),
-    radial-gradient(circle at 70% 70%, rgba(87, 157, 255, 0.08), transparent 68%);
+.landing-page-dark .landing-spotlight {
+  display: none;
 }
 
-[data-theme="dark"] .landing-card-fade::after {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 28%),
-    linear-gradient(135deg, rgba(87, 157, 255, 0.09), transparent 48%);
+.landing-page-dark .landing-frame::after {
+  background: none;
+}
+
+.landing-page-dark .landing-frame-blue::after {
+  background: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -486,7 +472,6 @@ select {
     scroll-behavior: auto;
   }
 
-  .landing-orb,
   .fade-in,
   .task-modal-pop,
   .planner-transition-next,
